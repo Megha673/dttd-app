@@ -1,0 +1,82 @@
+
+
+<style>
+	body {
+	  font-family: Arial, sans-serif;
+	  background-color: #f4f4f4;
+	  display: flex;
+	  justify-content: center;
+	  align-items: center;
+	  height: 100vh;
+	  margin: 0;
+	}
+  
+	.delete-confirmation {
+	  max-width: 400px;
+	  margin: 0 auto;
+	  padding: 1.5rem;
+	  background-color: #f8f9fa;
+	  border-radius: 8px;
+	  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	  text-align: center;
+	}
+  
+	/* Styles for the confirmation message */
+	.delete-confirmation p {
+	  font-size: 1.1rem;
+	  color: #343a40;
+	  margin-bottom: 1.5rem;
+	}
+  
+	/* Styles for the item name */
+	.delete-confirmation p span {
+	  font-weight: bold;
+	  color: #dc3545;
+	}
+  
+	
+	.delete-confirmation a,
+	.delete-confirmation input[type="submit"] {
+	  display: inline-block;
+	  padding: 0.5rem 1rem;
+	  margin: 0 0.5rem;
+	  border: none;
+	  border-radius: 4px;
+	  font-size: 1rem;
+	  text-decoration: none;
+	  cursor: pointer;
+	  transition: background-color 0.3s ease;
+	}
+  
+
+	.delete-confirmation a {
+	  background-color: #6c757d;
+	  color: white;
+	}
+	.delete-confirmation a:hover {
+	  background-color: #5a6268;
+	}
+  
+	
+	.delete-confirmation input[type="submit"] {
+	  background-color: #dc3545;
+	  color: white;
+	}
+	.delete-confirmation input[type="submit"]:hover {
+	  background-color: #c82333;
+	}
+  
+	
+	.delete-confirmation form {
+	  display: inline-block;
+	}
+  </style>
+  
+  <div class="delete-confirmation">
+	<p>Are you sure you want to delete "<span>{{item}}</span>"?</p>
+	<a href="{% url 'list' %}">Cancel</a>
+	<form method="POST" action="">
+	  {% csrf_token %}
+	  <input type="submit" name="Confirm" value="Confirm">
+	</form>
+  </div>

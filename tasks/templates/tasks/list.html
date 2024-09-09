@@ -1,0 +1,115 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+<style>
+
+	html, body {
+        height: 100%;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        background-color:  #b87333;
+    }
+
+	input{
+		width: 100%;
+		padding: 12px 20px;
+		margin: 8px 0;
+		box-sizing: border-box;
+		background-color: #f5f5dd;
+		border-radius: 10px;
+		border: none;
+		
+	}
+
+	input::placeholder {
+	  color: #d3d3d3;
+	}
+
+	.submit{
+		background-color: #black;
+	}
+
+	.center-column{
+		flex:1;
+		width:600px;
+		margin: 20px auto;
+		padding:20px;
+		background-color: #d2956b;
+		border-radius: 12px;
+		box-shadow: 6px 2px 30px 0px rgba(0,0,0,0.75);
+	}
+
+	.item-row{
+		background-color: #583927;
+		margin: 10px;
+		padding: 20px;
+		border-radius: 6px;
+		color: #fff;
+		font-size: 16px;
+		box-shadow: 0px -1px 10px -4px rgba(0,0,0,0.75);
+	}
+
+	.btn-danger{
+		background-color: #f5f5dd;
+		border-color: #e59400;
+		color: black;
+		border:none;
+	}
+
+	.btn-info{
+		background-color: #bb7c23;
+		border-color: #e59400;
+		color: black;
+		border:none;
+		
+
+	}
+
+	.footer {
+        flex-shrink: 0;
+        background-color: #583927;
+        color: #ffffff;
+        text-align: center;
+        padding: 10px 0;
+        font-size: 0.8rem;
+        width: 100%;
+    }
+</style>
+
+<div class="center-column">
+
+	{% comment %} <form method="POST" action="/">
+		{% csrf_token %}
+		{{form.title}}
+		<input class="btn btn-info" type="submit" name="Create Task">
+	</form> {% endcomment %}
+
+	<form method="POST" action="{% url 'list' %}">
+		{% csrf_token %}
+		{{ form.title }}
+		<input class="btn btn-info" type="submit" value="Create Task">
+	</form>
+	
+
+	<div class="todo-list">
+
+	{% for task in tasks %}
+		<div class="item-row">
+			<a class="btn btn-sm btn-info" href="{% url 'update_task' task.id %}">Update</a>
+			<a class="btn btn-sm btn-danger" href="{% url 'delete' task.id %}">Delete</a>
+
+			{% if task.complete == True %}
+			<strike>{{task}}</strike>
+			{% else %}
+			<span>{{task}}</span>
+			{% endif %}
+		</div>
+	{% endfor %}
+
+	</div>
+	
+</div>
+
+<footer class="footer">
+	Made by Megha
+</footer>
